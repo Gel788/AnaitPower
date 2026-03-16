@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anait Visa — Оформление виз под ключ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">A</div>
+      <div class="logo-text">
+        <span class="logo-name">Anait Visa</span>
+        <span class="logo-sub">визовый центр</span>
+      </div>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#services">Услуги</a>
+      <a href="#how">Процесс</a>
+      <a href="#countries">Страны</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="tel:+79990000000" class="nav-phone">+7 (999) 000-00-00</a>
+      <button class="btn-cta" data-open="modal">Оставить заявку</button>
+    </div>
+
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="air-freight-1536x864.jpg" alt="" aria-hidden="true">
+    <div class="hero-bg-overlay"></div>
+  </div>
+
+  <!-- animated orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Онлайн · Оформляем прямо сейчас</span>
+      </div>
+
+      <h1 class="hero-title">
+        Визу&nbsp;—<br>
+        <em>без стресса</em><br>
+        и очередей
+      </h1>
+
+      <p class="hero-desc">
+        Берём на себя всё: подбор типа визы, сбор и подготовку документов,
+        запись в центр и сопровождение до получения паспорта.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <strong data-count="95">0</strong><sup>%</sup>
+          <span>одобрений</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>3–10</strong>
+          <span>дней срок</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong data-count="1200">0</strong><sup>+</sup>
+          <span>клиентов</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-hero-main" data-open="modal">
+          Оформить визу
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <a href="#how" class="btn-hero-ghost">Как мы работаем</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-card-title">Подбор за 2 минуты</span>
+          <span class="hero-card-free">Бесплатно</span>
+        </div>
+        <form class="form" id="quick-form">
+          <label class="field">
+            <span class="field-label">Цель поездки</span>
+            <select class="field-input" name="purpose" required>
+              <option value="" disabled selected>Выберите цель</option>
+              <option>Туризм / отдых</option>
+              <option>Бизнес / работа</option>
+              <option>Учёба / курсы</option>
+              <option>Гости / родственники</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">Страна назначения</span>
+            <input class="field-input" type="text" name="country" placeholder="Например: Италия" required>
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">Дата вылета</span>
+              <input class="field-input" type="date" name="date" required>
+            </label>
+            <label class="field">
+              <span class="field-label">Человек</span>
+              <input class="field-input" type="number" min="1" max="10" value="1" name="persons" required>
+            </label>
+          </div>
+          <label class="field">
+            <span class="field-label">Телефон</span>
+            <input class="field-input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+          </label>
+          <button class="btn-submit" type="submit">
+            Подобрать визу →
+          </button>
+          <p class="form-note">Нажимая, вы соглашаетесь с обработкой персональных данных.</p>
+          <p class="form-ok" id="quick-ok" hidden>✓ Отправлено! Позвоним в течение 15 минут.</p>
+        </form>
+      </div>
+
+      <!-- floating chips -->
+      <div class="hero-chip chip-1">
+        <span>✓</span> Шенген одобрен
+      </div>
+      <div class="hero-chip chip-2">
+        <span>🛡</span> Гарантия результата
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll indicator -->
+  <a href="#services" class="scroll-hint">
+    <span>Листайте вниз</span>
+    <div class="scroll-hint-line"></div>
+  </a>
+</section>
+
+<!-- ══════════════════ TRUST STRIP ══════════════════ -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <span class="trust-label">Работаем с визовыми центрами:</span>
+    <div class="trust-items">
+      <span>🇮🇹 Италия</span>
+      <span>🇫🇷 Франция</span>
+      <span>🇩🇪 Германия</span>
+      <span>🇺🇸 США</span>
+      <span>🇬🇧 Великобритания</span>
+      <span>🇯🇵 Япония</span>
+      <span>🇦🇪 ОАЭ</span>
+      <span>🇸🇬 Сингапур</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ SERVICES ══════════════════ -->
+<section class="section s-light" id="services">
+  <div class="section-inner">
+    <div class="section-head center">
+      <div class="tag">Услуги</div>
+      <h2>Оформляем любые визы<br><em>под ключ</em></h2>
+      <p>Полное сопровождение по визам любой сложности — от туризма до переезда.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon">✈️</div>
+        <div class="svc-body">
+          <h3>Туристические визы</h3>
+          <p>Шенген, США, Великобритания и Азия. Подготовим полный пакет документов, заполним анкету, подберём оптимальный тип и срок.</p>
+          <ul>
+            <li>Шенгенские визы (26 стран)</li>
+            <li>США, Канада, Великобритания</li>
+            <li>Многократные визы</li>
+          </ul>
+        </div>
+        <button class="svc-link" data-open="modal">Узнать стоимость →</button>
+      </div>
+
+      <div class="svc-card svc-featured reveal">
+        <div class="svc-feat-badge">Популярное</div>
+        <div class="svc-icon">💼</div>
+        <div class="svc-body">
+          <h3>Бизнес-визы</h3>
+          <p>Командировки, конференции, переговоры. Сопроводительные письма, план поездки — всё оформим корректно и в срок.</p>
+          <ul>
+            <li>Деловые визы и командировки</li>
+            <li>Долгосрочные мультивизы</li>
+            <li>Экспресс-запись и слоты</li>
+          </ul>
+        </div>
+        <button class="svc-link" data-open="modal">Обсудить задачу →</button>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🎓</div>
+        <div class="svc-body">
+          <h3>Учёба и переезд</h3>
+          <p>Студенческие визы, рабочие разрешения, воссоединение семьи. Помогаем с мотивационными письмами и контрактами.</p>
+          <ul>
+            <li>Студенческие визы</li>
+            <li>Рабочие и релокационные</li>
+            <li>Воссоединение семьи</li>
+          </ul>
+        </div>
+        <button class="svc-link" data-open="modal">Получить консультацию →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ HOW ══════════════════ -->
+<section class="section s-dark" id="how">
+  <div class="orb orb-dark-1"></div>
+  <div class="orb orb-dark-2"></div>
+  <div class="section-inner" style="position:relative;z-index:1">
+    <div class="section-head center">
+      <div class="tag tag-dark">Процесс</div>
+      <h2 style="color:#fff">4 шага до вашей<br><em>готовой визы</em></h2>
+      <p style="color:rgba(255,255,255,.55)">Прозрачный процесс. Вы всегда знаете, что происходит с вашей заявкой.</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <h3>Консультация</h3>
+        <p>Уточняем цель, сроки, пожелания. Подбираем оптимальный тип визы и список документов. Бесплатно.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <h3>Документы</h3>
+        <p>Заполняем анкету, готовим бронь, страховку, делаем переводы и проверяем весь пакет.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <h3>Запись</h3>
+        <p>Подбираем удобную дату в визовом центре. Даём инструкции по биометрии и прохождению.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card reveal">
+        <div class="step-num">04</div>
+        <h3>Результат</h3>
+        <p>Отслеживаем статус, помогаем при дозапросах и встречаем вас с готовым паспортом.</p>
+      </div>
+    </div>
+
+    <div class="how-cta reveal">
+      <div class="how-cta-text">
+        <strong>Готовы оформить визу прямо сейчас?</strong>
+        <span>Отвечаем в течение 10 минут в рабочее время</span>
+      </div>
+      <button class="btn-cta" data-open="modal">Оставить заявку</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ COUNTRIES ══════════════════ -->
+<section class="section s-light" id="countries">
+  <div class="section-inner">
+    <div class="countries-layout">
+      <div>
+        <div class="section-head">
+          <div class="tag">Страны</div>
+          <h2>Работаем с&nbsp;<em>любым</em><br>направлением</h2>
+          <p>Актуальные требования консульств и визовых центров. Нет нужной страны — напишите нам.</p>
+        </div>
+
+        <div class="country-groups">
+          <div class="cg reveal">
+            <span class="cg-label">🇪🇺 Шенген</span>
+            <div class="cg-pills">
+              <span>Италия</span><span>Франция</span><span>Испания</span>
+              <span>Греция</span><span>Германия</span><span>Португалия</span><span>Австрия</span>
+            </div>
+          </div>
+          <div class="cg reveal">
+            <span class="cg-label">🌎 Северная Америка</span>
+            <div class="cg-pills"><span>США</span><span>Канада</span></div>
+          </div>
+          <div class="cg reveal">
+            <span class="cg-label">🇬🇧 Великобритания</span>
+            <div class="cg-pills"><span>Лондон</span><span>Шотландия</span><span>Уэльс</span></div>
+          </div>
+          <div class="cg reveal">
+            <span class="cg-label">🌏 Азия и другие</span>
+            <div class="cg-pills">
+              <span>Япония</span><span>ОАЭ</span><span>Сингапур</span><span>Таиланд</span><span>Китай</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ask-box reveal">
+        <div class="ask-box-glow"></div>
+        <div class="ask-box-inner">
+          <div class="ask-icon">🌍</div>
+          <h3>Не нашли страну?</h3>
+          <p>Проверим актуальные визовые правила для любого направления — это бесплатно и займёт 10 минут.</p>
+          <button class="btn-cta btn-full" data-open="modal">Задать вопрос специалисту</button>
+          <div class="ask-meta">
+            <span class="ask-online-dot"></span>
+            Отвечаем в течение 10–20 минут
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ REVIEWS ══════════════════ -->
+<section class="section s-reviews" id="reviews">
+  <div class="section-inner">
+
+    <!-- rating overview -->
+    <div class="reviews-hero reveal">
+      <div class="reviews-hero-left">
+        <div class="tag">Отзывы клиентов</div>
+        <h2>Нам доверяют<br><em>тысячи</em> путешественников</h2>
+        <p>Мы гордимся каждым одобренным паспортом. Читайте реальные отзывы клиентов.</p>
+      </div>
+      <div class="reviews-hero-right">
+        <div class="rating-big">
+          <span class="rating-num">4.9</span>
+          <div>
+            <div class="rating-stars-lg">★★★★★</div>
+            <span class="rating-count">на основе 320+ отзывов</span>
+          </div>
+        </div>
+        <div class="rating-bars">
+          <div class="rbar"><span>5 ★</span><div class="rbar-track"><div class="rbar-fill" style="width:87%"></div></div><span>87%</span></div>
+          <div class="rbar"><span>4 ★</span><div class="rbar-track"><div class="rbar-fill rbar-fill--4" style="width:10%"></div></div><span>10%</span></div>
+          <div class="rbar"><span>3 ★</span><div class="rbar-track"><div class="rbar-fill rbar-fill--3" style="width:3%"></div></div><span>3%</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cards -->
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-header">
+          <div class="review-ava">А</div>
+          <div>
+            <strong>Анна М.</strong>
+            <span>Москва</span>
+          </div>
+          <div class="review-verified">✓ Верифицировано</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <h4>Шенген за 6 дней — спасли отпуск!</h4>
+        <p class="review-text">«Нужно было срочно улететь в Италию, времени вообще не было. Ребята сделали всё за меня — от анкеты до записи. Виза пришла за 6 дней. Просто спасли отпуск!»</p>
+        <div class="review-meta">Шенген · Италия · Июль 2024</div>
+      </div>
+
+      <div class="review-card review-card-featured reveal">
+        <div class="review-feat-label">Топ-отзыв</div>
+        <div class="review-header">
+          <div class="review-ava review-ava-lg">И</div>
+          <div>
+            <strong>Игорь К.</strong>
+            <span>Санкт-Петербург</span>
+          </div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <h4>Виза США с первого раза на 3 года</h4>
+        <p class="review-text">«Очень переживал из-за собеседования. Подготовили полный список вопросов и ответов, помогли собрать документы. Офицер одобрил визу сразу на 3 года. Невероятно!»</p>
+        <div class="review-meta">Виза США · B1/B2 · Март 2025</div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-header">
+          <div class="review-ava">М</div>
+          <div>
+            <strong>Мария Д.</strong>
+            <span>Казань</span>
+          </div>
+          <div class="review-verified">✓ Верифицировано</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <h4>Учебная виза в Европу без стресса</h4>
+        <p class="review-text">«Поступала на магистратуру, очень сложный список документов. Помогли с мотивационным письмом, контрактом и страховкой. Без них точно не справилась бы!»</p>
+        <div class="review-meta">Учебная виза · Германия · Сентябрь 2024</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section class="section s-faq" id="faq">
+  <div class="section-inner">
+    <div class="faq-top reveal">
+      <div class="tag">FAQ</div>
+      <h2>Частые вопросы об<br><em>оформлении виз</em></h2>
+      <p>Ответили на 95% входящих вопросов. Если не нашли — напишите, ответим за 10 минут.</p>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-list" id="faq-list">
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Сколько стоит оформление визы?</span>
+            <div class="faq-ic"></div>
+          </button>
+          <div class="faq-body"><p>Стоимость наших услуг от 3 500 ₽ + консульский сбор (зависит от страны). Точную стоимость рассчитаем на консультации — это бесплатно.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Сколько времени занимает оформление?</span>
+            <div class="faq-ic"></div>
+          </button>
+          <div class="faq-body"><p>Стандартный срок — 3–10 рабочих дней. В срочных случаях возможно ускоренное рассмотрение. Сроки зависят от страны и загруженности консульства.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Какие документы нужны для шенгена?</span>
+            <div class="faq-ic"></div>
+          </button>
+          <div class="faq-body"><p>Загранпаспорт (срок действия +3 мес.), анкета, фото, брони билетов и отеля, страховка, выписка со счёта. Мы подготовим и проверим весь пакет.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Что делать, если откажут в визе?</span>
+            <div class="faq-ic"></div>
+          </button>
+          <div class="faq-body"><p>Мы делаем всё возможное для предотвращения отказа. Если отказ всё же получен — помогаем разобраться в причинах и подать повторно с учётом замечаний.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" aria-expanded="false">
+            <span>Нужно ли лично присутствовать?</span>
+            <div class="faq-ic"></div>
+          </button>
+          <div class="faq-body"><p>Для сдачи биометрии — один раз. Мы запишем вас на удобное время и полностью подготовим к визиту: что взять, как пройти, что говорить.</p></div>
+        </div>
+      </div>
+
+      <div class="faq-cta-box reveal">
+        <div class="faq-cta-inner">
+          <div class="faq-cta-icon">💬</div>
+          <h3>Остался вопрос?</h3>
+          <p>Наши специалисты на связи и готовы ответить в течение 10 минут в рабочее время.</p>
+          <div class="faq-cta-contacts">
+            <a href="tel:+79990000000" class="faq-contact-link">
+              <span class="fci">📞</span> +7 (999) 000-00-00
+            </a>
+            <a href="https://wa.me/79990000000" class="faq-contact-link" target="_blank">
+              <span class="fci">💬</span> WhatsApp
+            </a>
+          </div>
+          <button class="btn-cta btn-full" data-open="modal">Оставить заявку</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTACTS ══════════════════ -->
+<section class="section s-contacts" id="contacts">
+  <div class="orb orb-dark-1"></div>
+  <div class="orb orb-dark-2"></div>
+  <div class="section-inner contacts-wrap">
+
+    <div class="contacts-left reveal">
+      <div class="tag tag-dark">Контакты</div>
+      <h2 class="contacts-title">Начните<br>путешествие<br><em>сегодня</em></h2>
+      <p class="contacts-desc">Оставьте заявку — свяжемся в течение 10 минут и предложим лучший вариант визы.</p>
+
+      <div class="contact-cards">
+        <a href="tel:+79990000000" class="contact-card">
+          <div class="cc-icon">📞</div>
+          <div>
+            <span>Телефон</span>
+            <strong>+7 (999) 000‑00‑00</strong>
+          </div>
+          <div class="cc-arrow">→</div>
+        </a>
+        <a href="https://wa.me/79990000000" class="contact-card" target="_blank" rel="noreferrer">
+          <div class="cc-icon">💬</div>
+          <div>
+            <span>WhatsApp</span>
+            <strong>Написать сейчас</strong>
+          </div>
+          <div class="cc-arrow">→</div>
+        </a>
+        <a href="mailto:info@anaitvisa.ru" class="contact-card">
+          <div class="cc-icon">✉️</div>
+          <div>
+            <span>Email</span>
+            <strong>info@anaitvisa.ru</strong>
+          </div>
+          <div class="cc-arrow">→</div>
+        </a>
+        <div class="contact-card contact-card-static">
+          <div class="cc-icon">📍</div>
+          <div>
+            <span>Офис</span>
+            <strong>Москва, ул. Примерная, 10</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacts-guarantee">
+        <div class="cg-item"><span>✓</span> Бесплатная консультация</div>
+        <div class="cg-item"><span>✓</span> Ответ за 10 минут</div>
+        <div class="cg-item"><span>✓</span> Официальный договор</div>
+      </div>
+    </div>
+
+    <div class="contacts-right reveal">
+      <div class="contact-form-box">
+        <div class="cfb-header">
+          <div class="cfb-avatar">👩‍💼</div>
+          <div>
+            <strong>Специалист по визам</strong>
+            <span><i class="online-dot"></i> Онлайн, ответим сейчас</span>
+          </div>
+        </div>
+        <h3>Оставить заявку</h3>
+        <form class="form" id="contact-form">
+          <label class="field">
+            <span class="field-label">Ваше имя</span>
+            <input class="field-input" type="text" name="name" placeholder="Как к вам обращаться?" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Телефон</span>
+            <input class="field-input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+          </label>
+          <label class="field">
+            <span class="field-label">Страна и цель поездки</span>
+            <textarea class="field-input" name="message" rows="3" placeholder="Например: Франция, туризм, 10 дней" required></textarea>
+          </label>
+          <button class="btn-submit" type="submit">Отправить заявку →</button>
+          <p class="form-note" style="color:rgba(255,255,255,.3)">Данные не передаются третьим лицам.</p>
+          <p class="form-ok" id="contact-ok" hidden>✓ Заявка отправлена! Скоро позвоним.</p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-inner footer-grid">
+      <div class="footer-col footer-col-brand">
+        <div class="footer-logo">
+          <div class="logo-mark logo-mark-sm">A</div>
+          <span class="footer-logo-name">Anait Visa</span>
+        </div>
+        <p class="footer-desc">Профессиональное оформление виз под ключ. Шенген, США, Великобритания, Азия.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/79990000000" target="_blank" rel="noreferrer" class="footer-social">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://t.me/anaitvisa" target="_blank" rel="noreferrer" class="footer-social">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          </a>
+          <a href="mailto:info@anaitvisa.ru" class="footer-social">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Услуги</h5>
+        <ul>
+          <li><a href="#services">Туристические визы</a></li>
+          <li><a href="#services">Бизнес-визы</a></li>
+          <li><a href="#services">Учёба и переезд</a></li>
+          <li><a href="#countries">Все страны</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="#how">Как мы работаем</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#faq">Вопросы и ответы</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="tel:+79990000000">+7 (999) 000-00-00</a></li>
+          <li><a href="mailto:info@anaitvisa.ru">info@anaitvisa.ru</a></li>
+          <li><a href="https://wa.me/79990000000">WhatsApp</a></li>
+          <li><span style="color:rgba(255,255,255,.4)">Москва, ул. Примерная, 10</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-inner footer-bottom-inner">
+      <span>© <span id="year"></span> Anait Visa Center. Все права защищены.</span>
+      <div class="footer-bottom-links">
+        <a href="#" data-open="policy">Политика конфиденциальности</a>
+        <a href="#">Наверх ↑</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ FLOATING UI ══════════════════ -->
+<!-- Mobile CTA -->
+<div class="mob-bar" id="mob-bar">
+  <a href="tel:+79990000000" class="mob-call">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+    Позвонить
+  </a>
+  <button class="mob-order" data-open="modal">Оставить заявку</button>
+</div>
+
+<!-- Back to top -->
+<button class="back-top" id="back-top" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- WhatsApp -->
+<a class="wa-btn" href="https://wa.me/79990000000" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Chat -->
+<div class="chat-win" id="chat-win">
+  <div class="chat-head">
+    <div class="chat-ava">👩‍💼</div>
+    <div>
+      <strong>Anait Visa Center</strong>
+      <span><i></i>Онлайн — отвечаем сейчас</span>
+    </div>
+  </div>
+  <div class="chat-body" id="chat-body">
+    <div class="chat-msg bot">
+      <div class="chat-bubble-msg">Здравствуйте! 👋 Чем могу помочь? Задайте вопрос или выберите ниже:</div>
+      <span class="chat-time">сейчас</span>
+    </div>
+  </div>
+  <div class="chat-quick" id="chat-quick">
+    <button>Сколько стоит шенген?</button>
+    <button>Как быстро оформите?</button>
+    <button>Какие нужны документы?</button>
+  </div>
+  <div class="chat-foot">
+    <input class="chat-in" id="chat-in" type="text" placeholder="Написать сообщение...">
+    <button class="chat-send" id="chat-send">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<button class="chat-fab" id="chat-fab" aria-label="Чат">
+  <div class="chat-fab-dot"></div>
+  <svg class="icon-chat" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+  <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+</button>
+
+<!-- MODALS -->
+<div class="modal" id="modal">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-box">
+    <button class="modal-close" data-close></button>
+    <div class="modal-header">
+      <h2>Оставить заявку</h2>
+      <p>Заполните форму — позвоним, уточним детали и рассчитаем стоимость.</p>
+    </div>
+    <form class="form" id="modal-form">
+      <label class="field">
+        <span class="field-label">Имя</span>
+        <input class="field-input" type="text" name="name" required>
+      </label>
+      <label class="field">
+        <span class="field-label">Телефон</span>
+        <input class="field-input" type="tel" name="phone" required>
+      </label>
+      <label class="field">
+        <span class="field-label">Страна и цель поездки</span>
+        <textarea class="field-input" name="msg" rows="3" required></textarea>
+      </label>
+      <button class="btn-submit" type="submit">Отправить заявку →</button>
+      <p class="form-note">Данные не передаются третьим лицам.</p>
+      <p class="form-ok" id="modal-ok" hidden>✓ Заявка отправлена!</p>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="policy">
+  <div class="modal-bg" data-close></div>
+  <div class="modal-box">
+    <button class="modal-close" data-close></button>
+    <h2 style="margin-bottom:16px">Политика конфиденциальности</h2>
+    <p style="font-size:14px;color:#5a6b82;line-height:1.8">Персональные данные используются исключительно для связи и предоставления визовых услуг. Данные не передаются третьим лицам согласно ФЗ № 152-ФЗ.</p>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <span>✓</span>
+  <span id="toast-msg"></span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
