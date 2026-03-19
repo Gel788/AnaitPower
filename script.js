@@ -115,6 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const TG_TOKEN   = "8766470726:AAGbARAr1FV6MYt8c_cBqbidHR3-TkmjRfQ";
   const TG_CHAT_ID = "-5191164852";
 
+  /* ── BITRIX24 CRM ── */
+  const BX_WEBHOOK = "https://visapower.bitrix24.ru/rest/1/eoern76dzleyk86u/";
+
+  function sendToBitrix(data) {
+    const fields = {
+      TITLE:     `Заявка с сайта AnaitPower — ${data["Страна"] || data["Цель"] || "новая"}`,
+      NAME:      data["Имя"]      || "",
+      PHONE:     [{ VALUE: data["Телефон"] || "", VALUE_TYPE: "WORK" }],
+      COMMENTS:  Object.entries(data).map(([k,v]) => `${k}: ${v}`).join("\n"),
+      SOURCE_ID: "WEB",
+      STATUS_ID: "NEW",
+    };
+    return fetch(BX_WEBHOOK + "crm.lead.add.json", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields })
+    });
+  }
+
   function sendToTelegram(data) {
     const lines = ["🛂 Новая заявка — AnaitPower", ""];
     for (const [key, val] of Object.entries(data)) {
@@ -164,10 +183,16 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       if (btn) { btn.textContent = "Отправляем..."; btn.disabled = true; btn.style.opacity = ".7"; }
 
+      const formData = collectForm(form);
       try {
-        await sendToTelegram(collectForm(form));
+        await sendToTelegram(formData);
       } catch (err) {
         console.warn("Telegram send error:", err);
+      }
+      try {
+        await sendToBitrix(formData);
+      } catch (err) {
+        console.warn("Bitrix24 send error:", err);
       }
 
       if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ""; }
