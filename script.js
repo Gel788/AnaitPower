@@ -1,23 +1,27 @@
 /* ── SPLASH ── */
 (function () {
-  const splash    = document.getElementById("splash");
-  const splashBar = document.getElementById("splash-progress");
-  if (!splash || !splashBar) return;
-  let pct = 0;
-  const step = () => {
-    pct += Math.random() * 18 + 6;
-    if (pct > 100) pct = 100;
-    splashBar.style.width = pct + "%";
+  const splash = document.getElementById("splash");
+  const line   = document.getElementById("splash-line");
+  if (!splash) return;
+
+  const DURATION = 2200; // ms общее время сплеша
+  const start = performance.now();
+
+  function tick(now) {
+    const elapsed = now - start;
+    const pct = Math.min(elapsed / DURATION * 100, 100);
+    if (line) line.style.width = pct + "%";
     if (pct < 100) {
-      setTimeout(step, 80 + Math.random() * 60);
+      requestAnimationFrame(tick);
     } else {
       setTimeout(() => {
         splash.classList.add("out");
-        setTimeout(() => { splash.style.display = "none"; }, 650);
-      }, 300);
+        setTimeout(() => { splash.style.display = "none"; }, 700);
+      }, 200);
     }
-  };
-  setTimeout(step, 300);
+  }
+
+  requestAnimationFrame(tick);
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
