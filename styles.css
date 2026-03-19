@@ -73,6 +73,101 @@ a   { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: none; background: none; }
 ul { list-style: none; }
 
+/* ═══════════════════════════════
+   SPLASH SCREEN
+═══════════════════════════════ */
+.splash {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--black);
+  transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
+}
+.splash.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash.out {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.splash-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,255,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.splash-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(100px); pointer-events: none;
+  animation: orbDrift 12s ease-in-out infinite;
+}
+.splash-orb-1 { width: 500px; height: 500px; top: -120px; left: -120px; background: rgba(37,99,255,.2); }
+.splash-orb-2 { width: 400px; height: 400px; bottom: -100px; right: -100px; background: rgba(124,58,237,.18); animation-delay: 4s; animation-direction: reverse; }
+.splash-orb-3 { width: 300px; height: 300px; top: 40%; left: 55%; background: rgba(6,182,212,.14); animation-delay: 8s; }
+@keyframes orbDrift { 0%,100% { transform: translate(0,0); } 33% { transform: translate(24px,-28px); } 66% { transform: translate(-18px,20px); } }
+
+.splash-inner {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px;
+  text-align: center;
+}
+
+.splash-logo {
+  width: 120px; height: 120px;
+  border-radius: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow:
+    0 0 0 1px rgba(37,99,255,.3),
+    0 0 60px rgba(37,99,255,.35),
+    0 20px 60px rgba(4,8,15,.8);
+  margin-bottom: 8px;
+  animation: splash-logo-in 0.8s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes splash-logo-in {
+  from { opacity: 0; transform: scale(.6) rotate(-10deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.splash-logo-img {
+  width: 76px; height: 76px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(37,99,255,.6));
+}
+
+.splash-name {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-size: 28px; font-weight: 800; letter-spacing: -.02em;
+  background: var(--grad-hero);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: splash-text-in .8s .2s cubic-bezier(.4,0,.2,1) both;
+}
+.splash-sub {
+  font-size: 14px; font-weight: 500; color: var(--text-4);
+  letter-spacing: .05em;
+  animation: splash-text-in .8s .35s cubic-bezier(.4,0,.2,1) both;
+}
+@keyframes splash-text-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.splash-bar {
+  width: 180px; height: 2px;
+  background: rgba(255,255,255,.08); border-radius: 999px;
+  overflow: hidden; margin-top: 8px;
+  animation: splash-text-in .8s .5s cubic-bezier(.4,0,.2,1) both;
+}
+.splash-progress {
+  height: 100%; width: 0%;
+  background: var(--grad-hero); border-radius: 999px;
+  transition: width .05s linear;
+}
+
 /* ─── PROGRESS ─── */
 #progress {
   position: fixed; top: 0; left: 0; z-index: 999;
@@ -216,6 +311,9 @@ h2 { font-size: clamp(32px, 3.5vw, 50px); color: var(--text); }
   transform: scale(1.05) rotate(-4deg);
 }
 .logo-sm { width: 30px; height: 30px; font-size: 15px; }
+.logo-mark-img { background: rgba(255,255,255,.06) !important; overflow: hidden; }
+.logo-mark-img img { width: 100%; height: 100%; object-fit: contain; padding: 5px; filter: drop-shadow(0 0 8px rgba(37,99,255,.4)); display: block; }
+.logo-sm.logo-mark-img img { padding: 3px; }
 .logo-name {
   font-size: 14px; font-weight: 800; color: var(--text);
   letter-spacing: .01em;

@@ -1,3 +1,25 @@
+/* ── SPLASH ── */
+(function () {
+  const splash    = document.getElementById("splash");
+  const splashBar = document.getElementById("splash-progress");
+  if (!splash || !splashBar) return;
+  let pct = 0;
+  const step = () => {
+    pct += Math.random() * 18 + 6;
+    if (pct > 100) pct = 100;
+    splashBar.style.width = pct + "%";
+    if (pct < 100) {
+      setTimeout(step, 80 + Math.random() * 60);
+    } else {
+      setTimeout(() => {
+        splash.classList.add("out");
+        setTimeout(() => { splash.style.display = "none"; }, 650);
+      }, 300);
+    }
+  };
+  setTimeout(step, 300);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
   /* ── YEAR ── */
   document.getElementById("year").textContent = new Date().getFullYear();
