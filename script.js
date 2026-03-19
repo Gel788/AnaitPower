@@ -116,15 +116,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const TG_CHAT_ID = "5191164852";
 
   function sendToTelegram(data) {
-    const lines = ["🛂 <b>Новая заявка — Anait Visa</b>\n"];
+    const lines = ["🛂 Новая заявка — Anait Visa", ""];
     for (const [key, val] of Object.entries(data)) {
-      if (val) lines.push(`<b>${key}:</b> ${val}`);
+      if (val) lines.push(`${key}: ${val}`);
     }
     const text = lines.join("\n");
     return fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: "HTML" })
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text })
     });
   }
 
