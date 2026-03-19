@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ── TELEGRAM BOT ── */
   const TG_TOKEN   = "8766470726:AAGbARAr1FV6MYt8c_cBqbidHR3-TkmjRfQ";
-  const TG_CHAT_ID = "5191164852";
+  const TG_CHAT_ID = "-5191164852";
 
   function sendToTelegram(data) {
     const lines = ["🛂 Новая заявка — Anait Visa", ""];
