@@ -1,28 +1,30 @@
-/* ── SPLASH ── */
-(function () {
+/* ── SPLASH ── runs after DOM ready ── */
+window.addEventListener("load", function () {
   const splash = document.getElementById("splash");
   const line   = document.getElementById("splash-line");
   if (!splash) return;
 
-  const DURATION = 2200; // ms общее время сплеша
-  const start = performance.now();
-
-  function tick(now) {
-    const elapsed = now - start;
-    const pct = Math.min(elapsed / DURATION * 100, 100);
+  // animate progress line via CSS width
+  let pct = 0;
+  const interval = setInterval(function () {
+    pct += 2.5;
+    if (pct >= 100) pct = 100;
     if (line) line.style.width = pct + "%";
-    if (pct < 100) {
-      requestAnimationFrame(tick);
-    } else {
-      setTimeout(() => {
+    if (pct >= 100) {
+      clearInterval(interval);
+      setTimeout(function () {
         splash.classList.add("out");
-        setTimeout(() => { splash.style.display = "none"; }, 700);
-      }, 200);
+        setTimeout(function () {
+          splash.style.display = "none";
+          document.body.style.overflow = "";
+        }, 700);
+      }, 300);
     }
-  }
+  }, 55); // 55ms × 40 steps ≈ 2.2s
 
-  requestAnimationFrame(tick);
-})();
+  // lock scroll while splash is showing
+  document.body.style.overflow = "hidden";
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ── YEAR ── */
