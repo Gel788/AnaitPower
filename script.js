@@ -111,21 +111,69 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* ── TELEGRAM BOT ── */
+  const TG_TOKEN   = "8766470726:AAGbARAr1FV6MYt8c_cBqbidHR3-TkmjRfQ";
+  const TG_CHAT_ID = "5191164852";
+
+  function sendToTelegram(data) {
+    const lines = ["🛂 <b>Новая заявка — Anait Visa</b>\n"];
+    for (const [key, val] of Object.entries(data)) {
+      if (val) lines.push(`<b>${key}:</b> ${val}`);
+    }
+    const text = lines.join("\n");
+    return fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: "HTML" })
+    });
+  }
+
+  function collectForm(form) {
+    const fd = new FormData(form);
+    const data = {};
+    // labels
+    const labels = {
+      name: "Имя",
+      phone: "Телефон",
+      country: "Страна",
+      purpose: "Цель",
+      type: "Тип визы",
+      date: "Дата вылета",
+      persons: "Человек",
+      msg: "Сообщение",
+      message: "Сообщение",
+    };
+    for (const [k, v] of fd.entries()) {
+      if (v && v.toString().trim()) {
+        data[labels[k] || k] = v.toString().trim();
+      }
+    }
+    // добавляем источник
+    data["Источник"] = form.id;
+    return data;
+  }
+
   /* ── FORMS ── */
   ["quick-form", "contact-form", "modal-form"].forEach(id => {
     const form = document.getElementById(id);
     if (!form) return;
     const btn = form.querySelector("[type=submit]");
     const orig = btn?.textContent;
-    form.addEventListener("submit", e => {
+
+    form.addEventListener("submit", async e => {
       e.preventDefault();
       if (btn) { btn.textContent = "Отправляем..."; btn.disabled = true; btn.style.opacity = ".7"; }
-      setTimeout(() => {
-        if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ""; }
-        form.reset();
-        closeModals();
-        toast("✓ Заявка отправлена! Свяжемся в ближайшее время.");
-      }, 1300);
+
+      try {
+        await sendToTelegram(collectForm(form));
+      } catch (err) {
+        console.warn("Telegram send error:", err);
+      }
+
+      if (btn) { btn.textContent = orig; btn.disabled = false; btn.style.opacity = ""; }
+      form.reset();
+      closeModals();
+      toast("✓ Заявка отправлена! Свяжемся в ближайшее время.");
     });
   });
 
