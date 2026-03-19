@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const TG_CHAT_ID = "-5191164852";
 
   function sendToTelegram(data) {
-    const lines = ["🛂 Новая заявка — Anait Visa", ""];
+    const lines = ["🛂 Новая заявка — AnaitPower", ""];
     for (const [key, val] of Object.entries(data)) {
       if (val) lines.push(`${key}: ${val}`);
     }
